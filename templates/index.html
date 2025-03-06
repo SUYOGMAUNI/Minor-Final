@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes Prediction</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Existing styles remain the same */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-image: url("{{ url_for('static', filename='background.jpg') }}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin: 0;
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 10px;
+            width: 550px;
+            color: white;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+        }
+
+        /* New horizontal layout styles */
+        .horizontal-group1 {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            margin: 10px 0;
+        }
+        /* New horizontal layout styles */
+        .horizontal-group2 {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin: 10px 0;
+        }
+
+        .form-group {
+            flex: 1;
+            text-align: left;
+        }
+
+        .form-group input {
+            width: 100%;
+        }
+
+        /* Keep existing other styles */
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            text-align: left;
+            font-size: 14px;
+            margin-top: 10px;
+            display: block;
+        }
+
+        input {
+            padding: 8px;
+            margin: 5px 0;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            margin-top: 15px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Diabetes Prediction System</h1>
+        <form action="{{ url_for('predict') }}" method="POST">
+            <!-- Vertical fields -->
+            <label>Pregnancy</label>
+            <input type="number" name="Pregnancy" placeholder="Enter Pregnancies" min="0" max="17" required>
+
+            <label>Glucose</label>
+            <input type="number" name="Glucose" placeholder="Enter Glucose (mg/dL)" min="30" max="300" required>
+
+            <label>Blood Pressure</label>
+            <input type="number" name="BloodPressure" placeholder="Enter Diastolic BloodPressure (mmHg)" min="10" max="120" required>
+
+            <!-- Horizontal group -->
+            <div class="horizontal-group1">
+                <div class="form-group">
+                    <label>Diabetic Parents</label>
+                    <input type="number" name="DiabeticParents" placeholder="0-2" min="0" max="2" required>
+                </div>
+                <div class="form-group">
+                    <label>Diabetic Siblings</label>
+                    <input type="number" name="DiabeticSiblings" placeholder="0-4" min="0" max="4" required>
+                </div>
+                <div class="form-group">
+                    <label>Diabetic Grandparents</label>
+                    <input type="number" name="DiabeticGrandparents" placeholder="0-4" min="0" max="4" required>
+                </div>
+            </div>
+              <!-- Horizontal group -->
+            <div class="horizontal-group1">
+                 <label>Height (Meters)</label>
+            <input type="number" step="0.001" name="Enter Height" placeholder="Height" min="1" max="2.3" required>
+
+            <label>Weight (Kg)</label>
+            <input type="number" step="0.1" name="Enter Weight" placeholder="Weight" required>
+            </div>
+
+
+            <!-- Remaining vertical fields -->
+            <label>Skin Thickness</label>
+            <input type="number" name="SkinThickness" placeholder="Enter Skin Thickness (mm)" min="10" max="50" required>
+
+            <label>Insulin</label>
+            <input type="number" name="Insulin" placeholder="Enter Insulin (μU/mL)" min="10" max="500" required>
+
+            <label>Age</label>
+            <input type="number" name="Age" placeholder="Enter Age" required>
+
+            <button type="submit">Predict</button>
+        </form>
+    </div>
+</body>
+</html>
